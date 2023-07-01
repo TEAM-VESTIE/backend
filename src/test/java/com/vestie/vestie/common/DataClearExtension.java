@@ -1,13 +1,13 @@
 package com.vestie.vestie.common;
 
-import org.junit.jupiter.api.extension.AfterEachCallback;
+import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-public class DataClearExtension implements AfterEachCallback {
+public class DataClearExtension implements BeforeEachCallback {
 
     @Override
-    public void afterEach(ExtensionContext context) {
+    public void beforeEach(ExtensionContext context) {
         DataCleaner dataCleaner = getDataCleaner(context);
         dataCleaner.clear();
     }
