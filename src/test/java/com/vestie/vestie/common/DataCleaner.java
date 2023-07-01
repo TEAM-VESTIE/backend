@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Profile("test")
 public class DataCleaner {
 
-    private static final String REFERENTIAL_FORMAT = "SET FOREIGN_KEY_CHECKS %d";
+    private static final String FOREIGN_KEY_CHECK_FORMAT = "SET FOREIGN_KEY_CHECKS %d";
     private static final String TRUNCATE_FORMAT = "TRUNCATE TABLE %s";
 
     private final List<String> tableNames = new ArrayList<>();
@@ -24,7 +24,7 @@ public class DataCleaner {
     @PostConstruct
     @SuppressWarnings("unchecked")
     public void findDatabaseTableNames() {
-        List<Object[]> tableInfos = entityManager.createNativeQuery("show tables").getResultList();
+        List<Object[]> tableInfos = entityManager.createNativeQuery("SHOW TABLES").getResultList();
         for (Object[] tableInfo : tableInfos) {
             String tableName = (String) tableInfo[0];
             tableNames.add(tableName);
@@ -38,10 +38,10 @@ public class DataCleaner {
     }
 
     private void truncate() {
-        entityManager.createNativeQuery(String.format(REFERENTIAL_FORMAT, 0)).executeUpdate();
+        entityManager.createNativeQuery(String.format(FOREIGN_KEY_CHECK_FORMAT, 0)).executeUpdate();
         for (String tableName : tableNames) {
             entityManager.createNativeQuery(String.format(TRUNCATE_FORMAT, tableName)).executeUpdate();
         }
-        entityManager.createNativeQuery(String.format(REFERENTIAL_FORMAT, 1)).executeUpdate();
+        entityManager.createNativeQuery(String.format(FOREIGN_KEY_CHECK_FORMAT, 1)).executeUpdate();
     }
 }
