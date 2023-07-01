@@ -16,10 +16,10 @@ public class DataCleaner {
     private static final String REFERENTIAL_FORMAT = "SET FOREIGN_KEY_CHECKS %d";
     private static final String TRUNCATE_FORMAT = "TRUNCATE TABLE %s";
 
+    private final List<String> tableNames = new ArrayList<>();
+
     @PersistenceContext
     private EntityManager entityManager;
-
-    private List<String> tableNames = new ArrayList<>();
 
     @PostConstruct
     @SuppressWarnings("unchecked")
