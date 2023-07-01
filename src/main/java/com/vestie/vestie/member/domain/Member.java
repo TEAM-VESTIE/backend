@@ -35,4 +35,8 @@ public class Member extends BaseEntity {
     public String name() {
         return name;
     }
+
+    public void signUp(MemberValidator validator) {
+        validator.validateDuplicateUsername(username);
+    }
 }
