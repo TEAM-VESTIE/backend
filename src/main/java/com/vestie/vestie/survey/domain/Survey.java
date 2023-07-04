@@ -23,8 +23,8 @@ public class Survey extends BaseEntity {
 
     private LocalDateTime endDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
+    @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
     public String formLink() {
