@@ -1,7 +1,6 @@
 package com.vestie.vestie.survey.domain;
 
 
-import com.vestie.vestie.FakeSurveyRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;

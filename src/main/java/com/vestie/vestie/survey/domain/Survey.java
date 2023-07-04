@@ -38,4 +38,6 @@ public class Survey extends BaseEntity {
     public Member member() {
         return member;
     }
+
+    public void setMember(Member member) { this.member = member; }
 }
