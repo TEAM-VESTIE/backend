@@ -31,7 +31,7 @@ public class ExceptionControllerAdvice {
     @ExceptionHandler(BaseException.class)
     ResponseEntity<ExceptionResponse> handleException(BaseException e) {
         BaseExceptionType type = e.exceptionType();
-        log.warn("[WARM] 예외 내용: {}", type.errorMessage());
+        log.warn("[WARN] 예외 내용: {}", type.errorMessage());
         return new ResponseEntity<>(
                 new ExceptionResponse(String.valueOf(type.errorCode()), type.errorMessage()),
                 type.httpStatus());
