@@ -24,6 +24,10 @@ public class Member extends BaseEntity {
     @Column(length = 100)
     private String name;
 
+    public void signUp(MemberValidator validator) {
+        validator.validateDuplicateUsername(username);
+    }
+
     public String username() {
         return username;
     }
@@ -34,9 +38,5 @@ public class Member extends BaseEntity {
 
     public String name() {
         return name;
-    }
-
-    public void signUp(MemberValidator validator) {
-        validator.validateDuplicateUsername(username);
     }
 }
