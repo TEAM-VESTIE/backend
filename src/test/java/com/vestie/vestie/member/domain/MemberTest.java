@@ -1,5 +1,6 @@
 package com.vestie.vestie.member.domain;
 
+import static com.vestie.vestie.member.exception.MemberExceptionType.AUTHENTICATION_FAIL;
 import static com.vestie.vestie.member.exception.MemberExceptionType.DUPLICATE_USERNAME;
 import static com.vestie.vestie.member.fixture.MemberFixture.동훈;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -49,6 +50,35 @@ class MemberTest {
 
             // when & then
             assertDoesNotThrow(() -> 가입할_회원.signUp(memberValidator));
+        }
+    }
+
+    @Nested
+    class 로그인_시 {
+
+        @Test
+        void 비밀번호가_일치하면_예외가_발생하지_않는다() {
+            // given
+            Member 동훈 = 동훈();
+
+            // when & then
+            assertDoesNotThrow(() ->
+                    동훈.login(동훈.password()));
+        }
+
+        @Test
+        void 비밀번호가_일치하지_않으면_예외이다() {
+            // given
+            Member 동훈 = 동훈();
+
+            // when
+            BaseExceptionType baseExceptionType = assertThrows(MemberException.class, () ->
+                    동훈.login("잘못된 비밀번호")
+            ).exceptionType();
+
+            // then
+            assertThat(baseExceptionType)
+                    .isEqualTo(AUTHENTICATION_FAIL);
         }
     }
 }
