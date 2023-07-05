@@ -27,4 +27,26 @@ public class SurveyAcceptanceSteps {
                 .then().log().all()
                 .extract();
     }
+
+    public static ExtractableResponse<Response> 설문_조회_요청 (
+            Long id
+    ) {
+
+        return given()
+                .contentType(JSON)
+                .when()
+                .get("/surveys/"+id)
+                .then().log().all()
+                .extract();
+    }
+
+    public static ExtractableResponse<Response> 전체_설문_조회_요청 (
+    ) {
+
+        return given()
+                .when()
+                .get("/surveys")
+                .then().log().all()
+                .extract();
+    }
 }
