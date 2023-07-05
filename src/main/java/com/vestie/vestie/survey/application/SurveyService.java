@@ -19,8 +19,7 @@ public class SurveyService {
 
     public Long register(SurveyRegisterCommand command) {
         Member member = memberRepository.getById(command.memberId());
-        Survey survey = command.toDomain();
-        survey.setMember(member);
+        Survey survey = command.toDomain(member);
         Survey savedSurvey = surveyRepository.save(survey);
         return savedSurvey.id();
     }
