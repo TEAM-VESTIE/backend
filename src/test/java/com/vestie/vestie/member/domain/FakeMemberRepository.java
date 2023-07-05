@@ -13,7 +13,8 @@ public class FakeMemberRepository implements MemberRepository {
     @Override
     public Member save(Member member) {
         ReflectionTestUtils.setField(member, "id", id);
-        return store.put(id++, member);
+        store.put(id, member);
+        return store.get(id++);
     }
 
     @Override
