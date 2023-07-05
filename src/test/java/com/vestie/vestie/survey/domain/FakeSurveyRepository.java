@@ -20,8 +20,8 @@ public class FakeSurveyRepository implements SurveyRepository {
     @Override
     public List<Survey> findAllByMemberId(Long memberId) {
         List<Survey> surveyList = new ArrayList<>();
-        for(int i=0; i<store.size(); i++) {
-            Survey s = store.get(i);
+        for(Long key : store.keySet()) {
+            Survey s = store.get(key);
             if(s.member().id() == memberId) {
                 surveyList.add(s);
             }
