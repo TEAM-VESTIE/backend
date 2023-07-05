@@ -4,8 +4,10 @@ import static java.util.concurrent.TimeUnit.DAYS;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 import com.auth0.jwt.algorithms.Algorithm;
+import com.vestie.vestie.auth.domain.AccessTokenDecoder;
 import com.vestie.vestie.auth.domain.AccessTokenProvider;
 import com.vestie.vestie.auth.domain.JwtProperties;
+import com.vestie.vestie.auth.infrastructure.jwt.JwtAccessTokenDecoder;
 import com.vestie.vestie.auth.infrastructure.jwt.JwtAccessTokenProvider;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -28,5 +30,10 @@ public class JwtConfig {
                         properties.accessTokenExpirationPeriodDay(),
                         DAYS)
         );
+    }
+
+    @Bean
+    public AccessTokenDecoder accessTokenDecoder(Algorithm algorithm) {
+        return new JwtAccessTokenDecoder(algorithm);
     }
 }
