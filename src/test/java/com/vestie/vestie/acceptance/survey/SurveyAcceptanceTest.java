@@ -28,7 +28,7 @@ public class SurveyAcceptanceTest extends AcceptanceTest {
         void 설문이_등록된다 () {
             // when
             회원_가입_요청("mallang", "1234", "동훈");
-            var 설문_등록_응답 = 설문_등록_요청("http://vestie.vestie", LocalDateTime.now());
+            var 설문_등록_응답 = 설문_등록_요청("베스티 선호도 설문조사", "http://vestie.vestie", LocalDateTime.now());
 
             // then
             응답_상태를_검증한다(설문_등록_응답, 생성됨);

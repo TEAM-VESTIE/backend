@@ -18,6 +18,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = PROTECTED)
 public class Survey extends BaseEntity {
 
+    @Column(length = 100)
+    private String title;
+
     @Column(length = 1000)
     private String formLink;
 

@@ -7,11 +7,12 @@ import jakarta.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 public record SurveyRegisterRequest (
+        @NotBlank String title,
         @NotBlank String formLink,
         @NotBlank @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul") LocalDateTime endDate
 ) {
 
     public SurveyRegisterCommand toCommand(Long memberId) {
-        return new SurveyRegisterCommand(memberId, formLink, endDate);
+        return new SurveyRegisterCommand(memberId, title, formLink, endDate);
     }
 }

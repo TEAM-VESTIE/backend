@@ -13,8 +13,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static com.vestie.vestie.member.fixture.MemberFixture.동훈;
-import static com.vestie.vestie.survey.fixture.SurveyFixture.설문_종료일;
-import static com.vestie.vestie.survey.fixture.SurveyFixture.설문_폼링크;
+import static com.vestie.vestie.survey.fixture.SurveyFixture.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("SurveyService 은(는)")
@@ -34,7 +33,7 @@ class SurveyServiceTest {
             // given
             Member 회원 = 동훈();
             memberRepository.save(회원);
-            SurveyRegisterCommand surveyRegisterCommand = new SurveyRegisterCommand(회원.id(), 설문_폼링크, 설문_종료일);
+            SurveyRegisterCommand surveyRegisterCommand = new SurveyRegisterCommand(회원.id(), 제목, 설문_폼링크, 설문_종료일);
 
             // when
             Long registeredId = surveyService.register(surveyRegisterCommand);
