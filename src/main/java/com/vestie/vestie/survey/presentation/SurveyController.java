@@ -1,11 +1,14 @@
 package com.vestie.vestie.survey.presentation;
 
 import com.vestie.vestie.survey.application.SurveyService;
+import com.vestie.vestie.survey.presentation.dto.SurveyInquiryResponse;
 import com.vestie.vestie.survey.presentation.dto.SurveyRegisterRequest;
+import com.vestie.vestie.survey.presentation.dto.SurveyResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
@@ -21,5 +24,18 @@ public class SurveyController {
         Long id = 1L;
         surveyService.register(request.toCommand(id));
         return ResponseEntity.status(CREATED).build();
+    }
+
+    @GetMapping
+    ResponseEntity<List<SurveyInquiryResponse>> getAllSurvey() {
+        Long id = 1L;
+        var allSurvey = surveyService.getAllSurvey(id);
+        return ResponseEntity.ok(allSurvey);
+    }
+
+    @GetMapping("/{surveyId}")
+    ResponseEntity<SurveyResponse> getSurvey(@PathVariable Long surveyId) {
+        var survey = surveyService.getSurvey(surveyId);
+        return ResponseEntity.ok(survey);
     }
 }

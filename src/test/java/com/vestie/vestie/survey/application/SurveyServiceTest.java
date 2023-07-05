@@ -1,6 +1,5 @@
 package com.vestie.vestie.survey.application;
 
-import com.vestie.vestie.survey.application.dto.SurveyInquiryCommand;
 import com.vestie.vestie.survey.domain.FakeSurveyRepository;
 import com.vestie.vestie.member.domain.FakeMemberRepository;
 import com.vestie.vestie.member.domain.Member;
@@ -10,8 +9,6 @@ import com.vestie.vestie.survey.domain.Survey;
 import com.vestie.vestie.survey.domain.SurveyRepository;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
-
-import java.util.List;
 
 import static com.vestie.vestie.member.fixture.MemberFixture.동훈;
 import static com.vestie.vestie.survey.fixture.SurveyFixture.*;
@@ -87,7 +84,7 @@ class SurveyServiceTest {
             // given
 
             // when
-            var getSurvey = surveyService.getSurvey(member.id(), survey.id());
+            var getSurvey = surveyService.getSurvey(survey.id());
 
             // then
             assertThat(getSurvey)

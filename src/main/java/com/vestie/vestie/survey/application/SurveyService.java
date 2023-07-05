@@ -2,11 +2,11 @@ package com.vestie.vestie.survey.application;
 
 import com.vestie.vestie.member.domain.Member;
 import com.vestie.vestie.member.domain.MemberRepository;
-import com.vestie.vestie.survey.application.dto.SurveyCommand;
-import com.vestie.vestie.survey.application.dto.SurveyInquiryCommand;
 import com.vestie.vestie.survey.application.dto.SurveyRegisterCommand;
 import com.vestie.vestie.survey.domain.Survey;
 import com.vestie.vestie.survey.domain.SurveyRepository;
+import com.vestie.vestie.survey.presentation.dto.SurveyInquiryResponse;
+import com.vestie.vestie.survey.presentation.dto.SurveyResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,17 +29,17 @@ public class SurveyService {
         return savedSurvey.id();
     }
 
-    public List<SurveyInquiryCommand> getAllSurvey(Long memberId) {
+    public List<SurveyInquiryResponse> getAllSurvey(Long memberId) {
         List<Survey> surveyList = surveyRepository.findAllByMemberId(memberId);
-        List<SurveyInquiryCommand> commandList = new ArrayList<>();
+        List<SurveyInquiryResponse> commandList = new ArrayList<>();
         for (Survey s : surveyList) {
-            commandList.add(new SurveyInquiryCommand(s.id(), s.title(), s.endDate()));
+            commandList.add(new SurveyInquiryResponse(s.id(), s.title(), s.endDate()));
         }
         return commandList;
     }
 
-    public SurveyCommand getSurvey(Long memberId, Long surveyId) {
+    public SurveyResponse getSurvey(Long surveyId) {
         Survey survey = surveyRepository.getById(surveyId);
-        return new SurveyCommand(survey.id(), survey.title(), survey.formLink(), survey.endDate());
+        return new SurveyResponse(survey.id(), survey.title(), survey.formLink(), survey.endDate());
     }
 }
