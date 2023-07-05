@@ -30,6 +30,8 @@ public class Survey extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
+    public String title() { return title; }
+
     public String formLink() {
         return formLink;
     }
