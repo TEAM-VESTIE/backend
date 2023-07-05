@@ -1,13 +1,13 @@
 package com.vestie.vestie.acceptance.survey;
 
 import com.vestie.vestie.survey.presentation.dto.SurveyRegisterRequest;
-import io.restassured.http.ContentType;
 import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;
 
 import java.time.LocalDateTime;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.http.ContentType.JSON;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class SurveyAcceptanceSteps {
@@ -20,7 +20,7 @@ public class SurveyAcceptanceSteps {
         SurveyRegisterRequest 설문_등록_요청_데이터 = new SurveyRegisterRequest(폼링크, 마감일);
         return given()
                 .body(설문_등록_요청_데이터)
-                .contentType(ContentType.JSON)
+                .contentType(JSON)
                 .when()
                 .post("/surveys")
                 .then().log().all()
