@@ -42,8 +42,10 @@ class SurveyServiceTest {
             // then
             assertThat(surveyRepository.findById(registeredId)
                     .isPresent());
-            assertThat(surveyRepository.findById(registeredId).get().member().username())
-                    .isEqualTo(회원.username());
+            assertThat(surveyRepository.findById(registeredId).get().member())
+                    .usingRecursiveComparison()
+                    .ignoringFields("id")
+                    .isEqualTo(회원);
         }
     }
 }
