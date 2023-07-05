@@ -13,6 +13,12 @@ public class Claims {
         this.claims = new HashMap<>();
     }
 
+    public static Claims fromId(Long id) {
+        Claims claims = new Claims();
+        claims.addClaims("id", String.valueOf(id));
+        return claims;
+    }
+
     public void addClaims(final String name, final String value) {
         claims.put(name, value);
     }

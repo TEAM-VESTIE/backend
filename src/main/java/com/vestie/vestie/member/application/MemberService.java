@@ -1,5 +1,9 @@
 package com.vestie.vestie.member.application;
 
+import com.vestie.vestie.auth.domain.AccessToken;
+import com.vestie.vestie.auth.domain.AccessTokenProvider;
+import com.vestie.vestie.auth.domain.Claims;
+import com.vestie.vestie.member.application.dto.LoginCommand;
 import com.vestie.vestie.member.application.dto.SignUpCommand;
 import com.vestie.vestie.member.domain.Member;
 import com.vestie.vestie.member.domain.MemberRepository;
@@ -15,10 +19,17 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
     private final MemberValidator memberValidator;
+    private final AccessTokenProvider accessTokenProvider;
 
     public void signUp(SignUpCommand command) {
         Member member = command.toDomain();
         member.signUp(memberValidator);
         memberRepository.save(member);
+    }
+
+    public AccessToken login(LoginCommand command) {
+        Member member = memberRepository.getByUsername(command.username());
+        member.login(command.password());
+        return accessTokenProvider.provide(Claims.fromId(member.id()));
     }
 }

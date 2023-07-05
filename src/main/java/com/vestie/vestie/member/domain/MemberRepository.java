@@ -17,4 +17,11 @@ public interface MemberRepository {
         return findById(id)
                 .orElseThrow(() -> new MemberException(NOT_FOUND_MEMBER));
     }
+
+    Optional<Member> findByUsername(String username);
+
+    default Member getByUsername(String username) {
+        return findByUsername(username)
+                .orElseThrow(() -> new MemberException(NOT_FOUND_MEMBER));
+    }
 }
