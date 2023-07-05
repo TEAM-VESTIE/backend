@@ -24,5 +24,4 @@ public class SurveyService {
         Survey savedSurvey = surveyRepository.save(survey);
         return savedSurvey.id();
     }
-
 }
