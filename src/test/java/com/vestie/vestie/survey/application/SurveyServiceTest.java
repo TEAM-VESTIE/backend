@@ -40,8 +40,6 @@ class SurveyServiceTest {
             Long registeredId = surveyService.register(surveyRegisterCommand);
 
             // then
-            assertThat(surveyRepository.findById(registeredId)
-                    .isPresent());
             assertThat(surveyRepository.findById(registeredId).get().member())
                     .usingRecursiveComparison()
                     .ignoringFields("id")
