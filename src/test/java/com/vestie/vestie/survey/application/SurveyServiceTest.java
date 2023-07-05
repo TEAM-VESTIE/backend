@@ -70,7 +70,7 @@ class SurveyServiceTest {
             // given
 
             // when
-            var allSurvey = surveyService.getAllSurvey(member.id());
+            var allSurvey = surveyService.getAllSurvey();
 
             // then
             assertThat(allSurvey.get(0))

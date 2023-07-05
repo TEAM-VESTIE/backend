@@ -14,6 +14,4 @@ public interface JpaSurveyRepository extends SurveyRepository, JpaRepository<Sur
     default Survey getById(Long id) {
         return SurveyRepository.super.getById(id);
     }
-
-    List<Survey> findAllByMemberId(Long memberId);
 }

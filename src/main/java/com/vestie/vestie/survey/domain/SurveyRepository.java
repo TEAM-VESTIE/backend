@@ -12,7 +12,7 @@ public interface SurveyRepository {
 
     Survey save(Survey survey);
 
-    List<Survey> findAllByMemberId(Long memberId);
+    List<Survey> findAll();
 
     Optional<Survey> findById(Long id);
 

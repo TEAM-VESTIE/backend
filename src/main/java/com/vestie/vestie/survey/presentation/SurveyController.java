@@ -28,8 +28,7 @@ public class SurveyController {
 
     @GetMapping
     ResponseEntity<List<SurveyInquiryResponse>> getAllSurvey() {
-        Long id = 1L;
-        var allSurvey = surveyService.getAllSurvey(id);
+        var allSurvey = surveyService.getAllSurvey();
         return ResponseEntity.ok(allSurvey);
     }
 

@@ -18,13 +18,11 @@ public class FakeSurveyRepository implements SurveyRepository {
     }
 
     @Override
-    public List<Survey> findAllByMemberId(Long memberId) {
+    public List<Survey> findAll() {
         List<Survey> surveyList = new ArrayList<>();
         for(Long key : store.keySet()) {
             Survey s = store.get(key);
-            if(s.member().id() == memberId) {
-                surveyList.add(s);
-            }
+            surveyList.add(s);
         }
         return surveyList;
     }
