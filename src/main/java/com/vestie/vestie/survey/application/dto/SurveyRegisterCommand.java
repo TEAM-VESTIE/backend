@@ -10,6 +10,7 @@ public record SurveyRegisterCommand(
         String formLink,
         LocalDateTime endDate
 ) {
+    
     public Survey toDomain(Member member) {
         return Survey.builder()
                 .member(member)
