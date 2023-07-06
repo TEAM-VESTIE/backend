@@ -41,7 +41,7 @@ public class SurveyAcceptanceTest extends AcceptanceTest {
             설문_등록_요청("베스티 선호도 설문조사1", "http://vestie.vestie", LocalDateTime.now());
 
             // when
-            ExtractableResponse<Response> 설문_조회_응답 = 설문_조회_요청(1L);
+            var 설문_조회_응답 = 설문_조회_요청(1L);
 
             // then
             응답_상태를_검증한다(설문_조회_응답, 정상_처리);
@@ -55,7 +55,7 @@ public class SurveyAcceptanceTest extends AcceptanceTest {
             설문_등록_요청("베스티 선호도 설문조사2", "http://vestie.vestie", LocalDateTime.now());
 
             // when
-            ExtractableResponse<Response> 설문_조회_응답 = 전체_설문_조회_요청();
+            var 설문_조회_응답 = 전체_설문_조회_요청();
 
             // then
             응답_상태를_검증한다(설문_조회_응답, 정상_처리);
