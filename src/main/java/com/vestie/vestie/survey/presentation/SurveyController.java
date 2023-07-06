@@ -30,13 +30,13 @@ public class SurveyController {
 
     @GetMapping
     ResponseEntity<List<SurveyInquiryResponse>> getAllSurvey() {
-        var allSurvey = surveyQueryService.getAllSurvey();
+        List<SurveyInquiryResponse> allSurvey = surveyQueryService.getAllSurvey();
         return ResponseEntity.ok(allSurvey);
     }
 
     @GetMapping("/{surveyId}")
     ResponseEntity<SurveyResponse> getSurvey(@PathVariable Long surveyId) {
-        var survey = surveyQueryService.getSurvey(surveyId);
+        SurveyResponse survey = surveyQueryService.getSurvey(surveyId);
         return ResponseEntity.ok(survey);
     }
 }
