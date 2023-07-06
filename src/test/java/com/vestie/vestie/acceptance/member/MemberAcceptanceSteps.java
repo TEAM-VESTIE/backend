@@ -38,10 +38,17 @@ public class MemberAcceptanceSteps {
                 .extract();
     }
 
-    public static String 액세스_토큰을_추출한다(
+    public static String 로그인_응답에서_액세스_토큰을_추출한다(
             ExtractableResponse<Response> 응답
     ) {
         LoginResponse 로그인_응답 = 응답.body().as(LoginResponse.class);
         return 로그인_응답.token();
+    }
+
+    public static String 로그인_응답에서_이름을_추출한다(
+            ExtractableResponse<Response> 응답
+    ) {
+        LoginResponse 로그인_응답 = 응답.body().as(LoginResponse.class);
+        return 로그인_응답.name();
     }
 }

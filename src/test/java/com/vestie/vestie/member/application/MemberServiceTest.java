@@ -12,10 +12,10 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.vestie.vestie.auth.FakeAccessTokenProvider;
-import com.vestie.vestie.auth.domain.AccessToken;
 import com.vestie.vestie.auth.domain.AccessTokenProvider;
 import com.vestie.vestie.common.exception.BaseExceptionType;
 import com.vestie.vestie.member.application.dto.LoginCommand;
+import com.vestie.vestie.member.application.dto.LoginResult;
 import com.vestie.vestie.member.application.dto.SignUpCommand;
 import com.vestie.vestie.member.domain.FakeMemberRepository;
 import com.vestie.vestie.member.domain.Member;
@@ -83,15 +83,16 @@ class MemberServiceTest {
         }
 
         @Test
-        void 로그인에_성공하면_AccessToken을_발급한다() {
+        void 로그인에_성공하면_AccessToken을_발급하고_이름과_함께_반환한다() {
             // given
             LoginCommand command = new LoginCommand(username, password);
 
             // when
-            AccessToken accessToken = memberService.login(command);
+            LoginResult result = memberService.login(command);
 
             // then
-            assertThat(accessToken.value()).isNotNull();
+            assertThat(result.accessToken()).isNotNull();
+            assertThat(result.name()).isEqualTo("동훈");
         }
 
         @Test

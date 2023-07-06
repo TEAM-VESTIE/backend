@@ -4,6 +4,7 @@ import com.vestie.vestie.auth.domain.AccessToken;
 import com.vestie.vestie.auth.domain.AccessTokenProvider;
 import com.vestie.vestie.auth.domain.Claims;
 import com.vestie.vestie.member.application.dto.LoginCommand;
+import com.vestie.vestie.member.application.dto.LoginResult;
 import com.vestie.vestie.member.application.dto.SignUpCommand;
 import com.vestie.vestie.member.domain.Member;
 import com.vestie.vestie.member.domain.MemberRepository;
@@ -27,9 +28,10 @@ public class MemberService {
         memberRepository.save(member);
     }
 
-    public AccessToken login(LoginCommand command) {
+    public LoginResult login(LoginCommand command) {
         Member member = memberRepository.getByUsername(command.username());
         member.login(command.password());
-        return accessTokenProvider.provide(Claims.fromId(member.id()));
+        AccessToken token = accessTokenProvider.provide(Claims.fromId(member.id()));
+        return new LoginResult(token, member.name());
     }
 }
