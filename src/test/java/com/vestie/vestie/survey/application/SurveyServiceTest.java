@@ -22,6 +22,7 @@ class SurveyServiceTest {
     private final MemberRepository memberRepository = new FakeMemberRepository();
     private final SurveyRepository surveyRepository = new FakeSurveyRepository();
     private final SurveyService surveyService = new SurveyService(memberRepository, surveyRepository);
+    private final SurveyQueryService surveyQueryService = new SurveyQueryService(surveyRepository);
 
     @Nested
     class 설문등록_시 {
@@ -70,7 +71,7 @@ class SurveyServiceTest {
             // given
 
             // when
-            var allSurvey = surveyService.getAllSurvey();
+            var allSurvey = surveyQueryService.getAllSurvey();
 
             // then
             assertThat(allSurvey.get(0))
@@ -84,7 +85,7 @@ class SurveyServiceTest {
             // given
 
             // when
-            var getSurvey = surveyService.getSurvey(survey.id());
+            var getSurvey = surveyQueryService.getSurvey(survey.id());
 
             // then
             assertThat(getSurvey)
