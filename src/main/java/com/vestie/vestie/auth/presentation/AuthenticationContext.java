@@ -13,7 +13,7 @@ public class AuthenticationContext {
         return principal;
     }
 
-    public void setPrincipal(final Long principal) {
+    public void setPrincipal(Long principal) {
         this.principal = principal;
     }
 }
