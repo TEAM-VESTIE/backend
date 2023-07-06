@@ -7,8 +7,12 @@ import com.vestie.vestie.member.domain.MemberRepository;
 import com.vestie.vestie.survey.application.dto.SurveyRegisterCommand;
 import com.vestie.vestie.survey.domain.Survey;
 import com.vestie.vestie.survey.domain.SurveyRepository;
+import com.vestie.vestie.survey.presentation.dto.SurveyInquiryResponse;
+import com.vestie.vestie.survey.presentation.dto.SurveyResponse;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
+
+import java.util.List;
 
 import static com.vestie.vestie.member.fixture.MemberFixture.동훈;
 import static com.vestie.vestie.survey.fixture.SurveyFixture.*;
@@ -68,10 +72,8 @@ class SurveyServiceTest {
 
         @Test
         void 설문_리스트가_조회된다() {
-            // given
-
             // when
-            var allSurvey = surveyQueryService.getAllSurvey();
+            List<SurveyInquiryResponse> allSurvey = surveyQueryService.getAllSurvey();
 
             // then
             assertThat(allSurvey.get(0))
@@ -82,10 +84,8 @@ class SurveyServiceTest {
 
         @Test
         void 설문_하나가_조회된다() {
-            // given
-
             // when
-            var getSurvey = surveyQueryService.getSurvey(survey.id());
+            SurveyResponse getSurvey = surveyQueryService.getSurvey(survey.id());
 
             // then
             assertThat(getSurvey)
