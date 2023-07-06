@@ -21,8 +21,8 @@ public class FakeSurveyRepository implements SurveyRepository {
     public List<Survey> findAll() {
         List<Survey> surveyList = new ArrayList<>();
         for(Long key : store.keySet()) {
-            Survey s = store.get(key);
-            surveyList.add(s);
+            Survey survey = store.get(key);
+            surveyList.add(survey);
         }
         return surveyList;
     }
