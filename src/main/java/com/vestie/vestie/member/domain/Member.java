@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = PROTECTED)
 public class Member extends BaseEntity {
 
-    @Column(length = 100)
+    @Column(length = 100, unique = true)
     private String username;
 
     @Column(length = 100)
