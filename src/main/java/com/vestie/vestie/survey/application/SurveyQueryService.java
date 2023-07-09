@@ -21,8 +21,8 @@ public class SurveyQueryService {
     public List<SurveyInquiryResponse> getAllSurvey() {
         List<Survey> surveyList = surveyRepository.findAll();
         List<SurveyInquiryResponse> commandList = new ArrayList<>();
-        for (Survey s : surveyList) {
-            commandList.add(new SurveyInquiryResponse(s.id(), s.title(), s.endDate()));
+        for (Survey survey : surveyList) {
+            commandList.add(new SurveyInquiryResponse(survey.id(), survey.title(), survey.endDate()));
         }
         return commandList;
     }
