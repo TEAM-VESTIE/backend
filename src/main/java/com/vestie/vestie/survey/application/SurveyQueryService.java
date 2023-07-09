@@ -18,7 +18,6 @@ public class SurveyQueryService {
 
     private final SurveyRepository surveyRepository;
 
-
     public List<SurveyInquiryResponse> getAllSurvey() {
         List<Survey> surveyList = surveyRepository.findAll();
         List<SurveyInquiryResponse> commandList = new ArrayList<>();
