@@ -38,8 +38,7 @@ public class SurveyAcceptanceSteps {
                 .extract();
     }
 
-    public static ExtractableResponse<Response> 전체_설문_조회_요청 (
-    ) {
+    public static ExtractableResponse<Response> 전체_설문_조회_요청 () {
         return given()
                 .when()
                 .get("/surveys")
