@@ -12,4 +12,9 @@ public interface JpaMemberRepository extends MemberRepository, JpaRepository<Mem
     default Member getById(Long id) {
         return MemberRepository.super.getById(id);
     }
+
+    @Override
+    default Member getByUsername(String username) {
+        return MemberRepository.super.getByUsername(username);
+    }
 }

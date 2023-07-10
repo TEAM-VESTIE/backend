@@ -42,4 +42,12 @@ public class CommonAcceptanceSteps {
         assertThat(exceptionResponse.message())
                 .isEqualTo(예외_타입.errorMessage());
     }
+
+    public static <T> void 값이_존재한다(T t) {
+        assertThat(t).isNotNull();
+    }
+
+    public static <T> void 두_값이_같다(T 첫번째_값, T 두번째_값) {
+        assertThat(첫번째_값).isEqualTo(두번째_값);
+    }
 }

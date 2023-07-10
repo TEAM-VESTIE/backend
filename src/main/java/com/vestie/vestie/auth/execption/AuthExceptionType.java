@@ -1,20 +1,19 @@
-package com.vestie.vestie.member.exception;
+package com.vestie.vestie.auth.execption;
 
 import com.vestie.vestie.common.exception.BaseExceptionType;
 import org.springframework.http.HttpStatus;
 
-public enum MemberExceptionType implements BaseExceptionType {
+public enum AuthExceptionType implements BaseExceptionType {
 
-    NOT_FOUND_MEMBER(100, HttpStatus.NOT_FOUND, "회원이 존재하지 않습니다."),
-    DUPLICATE_USERNAME(101, HttpStatus.CONFLICT, "이미 존재하는 아이디입니다."),
-    AUTHENTICATION_FAIL(102, HttpStatus.UNAUTHORIZED, "인증에 실패하였습니다."),
+    NOT_FOUND_ACCESS_TOKEN(200, HttpStatus.UNAUTHORIZED, "액세스 토큰이 존재하지 않습니다."),
+    INVALID_ACCESS_TOKEN(201, HttpStatus.UNAUTHORIZED, "액세스 토큰이 유효하지 않습니다."),
     ;
 
     private final int errorCode;
     private final HttpStatus httpStatus;
     private final String errorMessage;
 
-    MemberExceptionType(int errorCode, HttpStatus httpStatus, String errorMessage) {
+    AuthExceptionType(int errorCode, HttpStatus httpStatus, String errorMessage) {
         this.errorCode = errorCode;
         this.httpStatus = httpStatus;
         this.errorMessage = errorMessage;

@@ -3,6 +3,9 @@ package com.vestie.vestie.member.presentation;
 import static org.springframework.http.HttpStatus.CREATED;
 
 import com.vestie.vestie.member.application.MemberService;
+import com.vestie.vestie.member.application.dto.LoginResult;
+import com.vestie.vestie.member.presentation.dto.LoginRequest;
+import com.vestie.vestie.member.presentation.dto.LoginResponse;
 import com.vestie.vestie.member.presentation.dto.SignUpRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -26,5 +29,14 @@ public class MemberController {
         memberService.signUp(request.toCommand());
         return ResponseEntity.status(CREATED)
                 .build();
+    }
+
+    @PostMapping("/login")
+    ResponseEntity<LoginResponse> login(
+            @Valid @RequestBody LoginRequest request
+    ) {
+        LoginResult result = memberService.login(request.toCommand());
+        LoginResponse response = new LoginResponse(result.accessToken().value(), result.name());
+        return ResponseEntity.ok(response);
     }
 }

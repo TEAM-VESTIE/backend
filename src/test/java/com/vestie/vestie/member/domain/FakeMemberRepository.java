@@ -27,4 +27,12 @@ public class FakeMemberRepository implements MemberRepository {
     public Optional<Member> findById(Long id) {
         return Optional.ofNullable(store.get(id));
     }
+
+    @Override
+    public Optional<Member> findByUsername(String username) {
+        return store.values()
+                .stream()
+                .filter(it -> it.username().equals(username))
+                .findAny();
+    }
 }

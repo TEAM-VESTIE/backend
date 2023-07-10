@@ -21,3 +21,7 @@ spring:
 logging:
   level:
     org.hibernate.orm.jdbc.bind: trace
+
+jwt:
+  secretKey: 7YWM7Iqk7Yq47Jqp7Iuc7YGs66a/7YKk
+  accessTokenExpirationPeriodDay: 1
