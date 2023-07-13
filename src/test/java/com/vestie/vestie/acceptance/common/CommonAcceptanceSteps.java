@@ -11,6 +11,8 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.springframework.http.HttpStatus;
 
+import java.time.LocalDateTime;
+
 @SuppressWarnings("NonAsciiCharacters")
 public class CommonAcceptanceSteps {
 
@@ -20,6 +22,8 @@ public class CommonAcceptanceSteps {
     public static HttpStatus 권한_없음 = HttpStatus.FORBIDDEN;
     public static HttpStatus 찾을수_없음 = HttpStatus.NOT_FOUND;
     public static HttpStatus 중복됨 = HttpStatus.CONFLICT;
+
+    public static LocalDateTime 현재시간 = LocalDateTime.now();
 
     public static RequestSpecification given() {
         return RestAssured
