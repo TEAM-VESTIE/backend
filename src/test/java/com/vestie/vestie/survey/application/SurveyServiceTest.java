@@ -65,13 +65,6 @@ class SurveyServiceTest {
             survey = surveyRepository.save(설문());
             surveyRepository.save(설문());
             surveyRepository.save(설문());
-
-//            SurveyRegisterCommand surveyRegisterCommand = new SurveyRegisterCommand(member.id(), 제목, 설문_폼링크, 설문_종료일);
-//            survey = surveyRepository.save(surveyRegisterCommand.toDomain(member));
-//            surveyRegisterCommand = new SurveyRegisterCommand(member.id(), 제목+"1", 설문_폼링크, 설문_종료일);
-//            surveyRepository.save(surveyRegisterCommand.toDomain(member));
-//            surveyRegisterCommand = new SurveyRegisterCommand(member.id(), 제목+"2", 설문_폼링크, 설문_종료일);
-//            surveyRepository.save(surveyRegisterCommand.toDomain(member));
         }
 
         @Test
