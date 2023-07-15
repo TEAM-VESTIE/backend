@@ -13,16 +13,35 @@ import static io.restassured.http.ContentType.JSON;
 public class SurveyAcceptanceSteps {
 
     public static ExtractableResponse<Response> 설문_등록_요청 (
+            String 제목,
             String 폼링크,
             LocalDateTime 마감일
     ) {
-
-        SurveyRegisterRequest 설문_등록_요청_데이터 = new SurveyRegisterRequest(폼링크, 마감일);
+        SurveyRegisterRequest 설문_등록_요청_데이터 = new SurveyRegisterRequest(제목, 폼링크, 마감일);
         return given()
                 .body(설문_등록_요청_데이터)
                 .contentType(JSON)
                 .when()
                 .post("/surveys")
+                .then().log().all()
+                .extract();
+    }
+
+    public static ExtractableResponse<Response> 설문_조회_요청 (
+            Long id
+    ) {
+        return given()
+                .contentType(JSON)
+                .when()
+                .get("/surveys/"+id)
+                .then().log().all()
+                .extract();
+    }
+
+    public static ExtractableResponse<Response> 전체_설문_조회_요청 () {
+        return given()
+                .when()
+                .get("/surveys")
                 .then().log().all()
                 .extract();
     }

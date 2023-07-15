@@ -2,9 +2,8 @@ package com.vestie.vestie.survey.domain;
 
 
 import org.springframework.test.util.ReflectionTestUtils;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+
+import java.util.*;
 
 public class FakeSurveyRepository implements SurveyRepository {
 
@@ -16,6 +15,16 @@ public class FakeSurveyRepository implements SurveyRepository {
         ReflectionTestUtils.setField(survey, "id", id);
         store.put(id, survey);
         return store.get(id++);
+    }
+
+    @Override
+    public List<Survey> findAll() {
+        List<Survey> surveyList = new ArrayList<>();
+        for(Long key : store.keySet()) {
+            Survey survey = store.get(key);
+            surveyList.add(survey);
+        }
+        return surveyList;
     }
 
     @Override

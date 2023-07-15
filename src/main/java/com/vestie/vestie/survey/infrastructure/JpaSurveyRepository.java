@@ -5,6 +5,8 @@ import com.vestie.vestie.survey.domain.SurveyRepository;
 import jakarta.annotation.Nonnull;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface JpaSurveyRepository extends SurveyRepository, JpaRepository<Survey, Long> {
 
     @Nonnull
