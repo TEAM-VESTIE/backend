@@ -1,16 +1,23 @@
 package com.vestie.vestie.survey.domain;
 
-
+import static jakarta.persistence.CascadeType.PERSIST;
+import static jakarta.persistence.CascadeType.REMOVE;
+import static jakarta.persistence.FetchType.LAZY;
 import static lombok.AccessLevel.PROTECTED;
 
 import com.vestie.vestie.common.domain.BaseEntity;
 import com.vestie.vestie.member.domain.Member;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
-import java.time.LocalDateTime;
-
 
 @Entity
 @Builder
@@ -18,22 +25,26 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = PROTECTED)
 public class Survey extends BaseEntity {
 
-    @Column(length = 100)
+    @Column(length = 100, nullable = false)
     private String title;
 
-    @Column(length = 1000)
-    private String formLink;
+    @Column(nullable = false)
+    private String description;
 
+    @Column(nullable = false)
     private LocalDateTime endDate;
 
-    @JoinColumn(name = "member_id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
-    public String title() { return title; }
+    @Builder.Default
+    @OneToMany(cascade = {PERSIST, REMOVE}, orphanRemoval = true)
+    @JoinColumn(name = "survey_id", nullable = false, updatable = false)
+    private List<Question> questions = new ArrayList<>();
 
-    public String formLink() {
-        return formLink;
+    public String title() {
+        return title;
     }
 
     public LocalDateTime endDate() {
@@ -42,5 +53,13 @@ public class Survey extends BaseEntity {
 
     public Member member() {
         return member;
+    }
+
+    public String description() {
+        return description;
+    }
+
+    public List<Question> questions() {
+        return new ArrayList<>(questions);
     }
 }

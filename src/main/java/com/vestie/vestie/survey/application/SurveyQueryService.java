@@ -4,12 +4,11 @@ import com.vestie.vestie.survey.domain.Survey;
 import com.vestie.vestie.survey.domain.SurveyRepository;
 import com.vestie.vestie.survey.presentation.dto.SurveyInquiryResponse;
 import com.vestie.vestie.survey.presentation.dto.SurveyResponse;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -29,6 +28,6 @@ public class SurveyQueryService {
 
     public SurveyResponse getSurvey(Long surveyId) {
         Survey survey = surveyRepository.getById(surveyId);
-        return new SurveyResponse(survey.id(), survey.title(), survey.formLink(), survey.endDate());
+        return new SurveyResponse(survey.id(), survey.title(), "removed", survey.endDate());
     }
 }
