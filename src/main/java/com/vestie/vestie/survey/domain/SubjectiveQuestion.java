@@ -11,4 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = PROTECTED)
 public class SubjectiveQuestion extends Question {
 
+    public SubjectiveQuestion(String title) {
+        super(title);
+    }
 }
