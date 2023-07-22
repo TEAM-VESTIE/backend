@@ -1,7 +1,7 @@
 package com.vestie.vestie.acceptance.common;
 
+import static io.restassured.http.ContentType.JSON;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import com.vestie.vestie.common.exception.BaseExceptionType;
 import com.vestie.vestie.common.exception.ExceptionResponse;
@@ -9,9 +9,8 @@ import io.restassured.RestAssured;
 import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.springframework.http.HttpStatus;
-
 import java.time.LocalDateTime;
+import org.springframework.http.HttpStatus;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class CommonAcceptanceSteps {
@@ -25,10 +24,22 @@ public class CommonAcceptanceSteps {
 
     public static LocalDateTime 현재시간 = LocalDateTime.now();
 
+    public static LocalDateTime N일_후(int 며칠) {
+        return LocalDateTime.now().plusDays(며칠);
+    }
+
     public static RequestSpecification given() {
         return RestAssured
                 .given().log().all()
-                .contentType(APPLICATION_JSON_VALUE);
+                .contentType(JSON);
+    }
+
+    public static RequestSpecification given(String 액세스_토큰) {
+        return RestAssured
+                .given()
+                .header("Authorization", "Bearer " + 액세스_토큰)
+                .log().all()
+                .contentType(JSON);
     }
 
     public static void 응답_상태를_검증한다(ExtractableResponse<Response> 응답, HttpStatus 상태) {
