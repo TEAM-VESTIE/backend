@@ -25,8 +25,8 @@ public class FakeMemberRepository implements MemberRepository {
     }
 
     @Override
-    public Optional<Member> findById(Long id) {
-        return Optional.ofNullable(store.get(id));
+    public Member getById(Long id) {
+        return store.get(id);
     }
 
     @Override
