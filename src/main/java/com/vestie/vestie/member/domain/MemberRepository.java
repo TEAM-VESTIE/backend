@@ -11,12 +11,7 @@ public interface MemberRepository {
 
     boolean existsByUsername(String username);
 
-    Optional<Member> findById(Long id);
-
-    default Member getById(Long id) {
-        return findById(id)
-                .orElseThrow(() -> new MemberException(NOT_FOUND_MEMBER));
-    }
+    Member getById(Long id);
 
     Optional<Member> findByUsername(String username);
 

@@ -66,8 +66,7 @@ class MemberServiceTest {
 
             // when & then
             assertDoesNotThrow(() -> memberService.signUp(command));
-            assertThat(memberRepository.findById(1L))
-                    .isPresent();
+            assertThat(memberRepository.getById(1L)).isNotNull();
         }
     }
 
