@@ -1,14 +1,14 @@
 package com.vestie.vestie.survey.application;
 
-import com.vestie.vestie.survey.domain.Survey;
-import com.vestie.vestie.survey.domain.SurveyRepository;
+import com.vestie.vestie.survey.domain.*;
 import com.vestie.vestie.survey.presentation.dto.SurveyInquiryResponse;
-import com.vestie.vestie.survey.presentation.dto.SurveyResponse;
 import java.util.ArrayList;
 import java.util.List;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 @Service
 @RequiredArgsConstructor
@@ -19,15 +19,18 @@ public class SurveyQueryService {
 
     public List<SurveyInquiryResponse> getAllSurvey() {
         List<Survey> surveyList = surveyRepository.findAll();
+        System.out.println(surveyList.size());
         List<SurveyInquiryResponse> commandList = new ArrayList<>();
         for (Survey survey : surveyList) {
-            commandList.add(new SurveyInquiryResponse(survey.id(), survey.title(), survey.endDate()));
+            commandList.add(
+                    new SurveyInquiryResponse(
+                            survey.id(),
+                            survey.title(),
+                            survey.endDate(),
+                            (long) survey.questions().size()
+                    )
+            );
         }
         return commandList;
-    }
-
-    public SurveyResponse getSurvey(Long surveyId) {
-        Survey survey = surveyRepository.getById(surveyId);
-        return new SurveyResponse(survey.id(), survey.title(), "removed", survey.endDate());
     }
 }
