@@ -16,14 +16,21 @@ import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/surveys/query")
+@RequestMapping("/surveys")
 public class SurveyQueryController {
 
     private final SurveyQueryService surveyQueryService;
 
-    @GetMapping
+    @GetMapping("/query")
     ResponseEntity<List<SurveyInquiryResponse>> getAllSurvey() {
         List<SurveyInquiryResponse> allSurvey = surveyQueryService.getAllSurvey();
         return ResponseEntity.ok(allSurvey);
+    }
+
+    @GetMapping("/{surveyId}")
+    ResponseEntity<SurveyResponse> getSurvey(@Auth Long memberId, @PathVariable Long surveyId) {
+        SurveyResponse survey = surveyQueryService.getSurvey(surveyId);
+        System.out.println(survey.survey().get(0).title());
+        return ResponseEntity.ok(survey);
     }
 }
