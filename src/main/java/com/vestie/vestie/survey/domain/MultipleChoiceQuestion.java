@@ -15,7 +15,7 @@ import java.util.List;
 import lombok.NoArgsConstructor;
 
 @Entity
-@DiscriminatorValue("MULTIPLE_CHOICE")
+@DiscriminatorValue(value=QuestionType.Values.MULTIPLE_CHOICE)
 @NoArgsConstructor(access = PROTECTED)
 public class MultipleChoiceQuestion extends Question {
 

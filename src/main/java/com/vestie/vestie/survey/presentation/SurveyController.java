@@ -20,13 +20,14 @@ public class SurveyController {
     ResponseEntity<Long> register(
             @Auth Long memberId,
             @RequestBody SurveyRegisterRequest request) {
-        surveyService.register(request.toCommand(memberId));
-        return ResponseEntity.status(CREATED).build();
+        Long registeredId = surveyService.register(request.toCommand(memberId));
+        return ResponseEntity.status(CREATED).body(registeredId);
     }
 
     @GetMapping("/{surveyId}")
-    ResponseEntity<SurveyResponse> getSurvey(@PathVariable Long surveyId) {
-        SurveyResponse survey = surveyService.getSurvey(surveyId);
+    ResponseEntity<SurveyResponse> getSurvey(@Auth Long memberId, @PathVariable Long surveyId) {
+            SurveyResponse survey = surveyService.getSurvey(surveyId);
+        System.out.println(survey.survey().get(0).title());
         return ResponseEntity.ok(survey);
     }
 }

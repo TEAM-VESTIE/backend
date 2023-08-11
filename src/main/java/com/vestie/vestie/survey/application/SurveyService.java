@@ -4,7 +4,7 @@ import com.vestie.vestie.member.domain.Member;
 import com.vestie.vestie.member.domain.MemberRepository;
 import com.vestie.vestie.survey.application.dto.SurveyRegisterCommand;
 import com.vestie.vestie.survey.domain.*;
-import com.vestie.vestie.survey.presentation.dto.SurveyResponse;
+import com.vestie.vestie.survey.presentation.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,7 +29,7 @@ public class SurveyService {
 
     public SurveyResponse getSurvey(Long surveyId) {
         Survey survey = surveyRepository.getById(surveyId);
-        List<SurveyResponse.QuestionResponse> questionResponses =
+        List<QuestionResponse> questionResponses =
                 survey.questions().stream()
                         .map(this::questionResponse)
                         .toList();
@@ -37,16 +37,23 @@ public class SurveyService {
         return new SurveyResponse(survey.id(), survey.title(), survey.description(), survey.endDate(), questionResponses);
     }
 
-    private SurveyResponse.QuestionResponse questionResponse(Question question) {
+    private QuestionResponse questionResponse(Question question) {
         if(question instanceof MultipleChoiceQuestion) {
             MultipleChoiceQuestion multipleChoiceQuestion = (MultipleChoiceQuestion) question;
-            return new SurveyResponse.MultipleChoiceQuestionResponse(
+            return new MultipleChoiceQuestionResponse(
                     question.id(),
-                    SubjectiveQuestion.class.getSimpleName(),
+                    QuestionType.MULTIPLE_CHOICE.name(),
                     question.title(),
                     multipleChoiceQuestion.choiceConstraints(),
-                    multipleChoiceQuestion.options());
+                    multipleChoiceQuestion.options().stream()
+                            .map(this::questionOptionResponse)
+                            .toList()
+            );
         }
-        return new SurveyResponse.SubjectiveQuestionResponse(question.id(), SubjectiveQuestion.class.getSimpleName(), question.title());
+        return new SubjectiveQuestionResponse(question.id(), QuestionType.SUBJECTIVE.name(), question.title());
+    }
+
+    private QuestionOptionResponse questionOptionResponse(Option option) {
+        return new QuestionOptionResponse(option.id(), option.name());
     }
 }
