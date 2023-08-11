@@ -11,6 +11,7 @@ import java.util.List;
 @Accessors(fluent = true)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class MultipleChoiceQuestionResponse extends QuestionResponse{
+
     private MultipleChoiceQuestion.ChoiceConstraints choiceConstraints;
     private List<QuestionOptionResponse> options;
 

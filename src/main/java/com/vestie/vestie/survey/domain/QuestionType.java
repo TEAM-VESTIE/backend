@@ -17,5 +17,4 @@ public enum QuestionType {
         public static final String SUBJECTIVE = "SUBJECTIVE";
         public static final String MULTIPLE_CHOICE = "MULTIPLE_CHOICE";
     }
-
 }

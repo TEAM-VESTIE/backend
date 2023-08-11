@@ -8,6 +8,7 @@ import lombok.experimental.Accessors;
 @Accessors(fluent = true)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class SubjectiveQuestionResponse extends QuestionResponse {
+
     public SubjectiveQuestionResponse(Long id, String format, String title){
         super(id, format, title);
     }
