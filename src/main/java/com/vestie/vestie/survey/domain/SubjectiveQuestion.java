@@ -7,7 +7,7 @@ import jakarta.persistence.Entity;
 import lombok.NoArgsConstructor;
 
 @Entity
-@DiscriminatorValue("SUBJECTIVE")
+@DiscriminatorValue(value = QuestionType.Values.SUBJECTIVE)
 @NoArgsConstructor(access = PROTECTED)
 public class SubjectiveQuestion extends Question {
 

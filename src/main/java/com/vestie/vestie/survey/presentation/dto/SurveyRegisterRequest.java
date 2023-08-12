@@ -86,12 +86,6 @@ public record SurveyRegisterRequest(
         List<QuestionRegisterCommand> questions = questionRequests.stream()
                 .map(QuestionRegisterRequest::toCommand)
                 .toList();
-        return SurveyRegisterCommand.builder()
-                .memberId(memberId)
-                .title(title)
-                .description(description)
-                .endDate(endDate)
-                .questionCommands(questions)
-                .build();
+        return new SurveyRegisterCommand(memberId, title, description, endDate, questions);
     }
 }

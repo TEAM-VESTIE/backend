@@ -8,6 +8,7 @@ public record SurveyInquiryResponse(
         Long id,
         String title,
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
-        LocalDateTime endDate
+        LocalDateTime endDate,
+        Long count
 ) {
 }

@@ -7,11 +7,8 @@ import static lombok.AccessLevel.PROTECTED;
 
 import com.vestie.vestie.common.domain.BaseEntity;
 import com.vestie.vestie.member.domain.Member;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +36,7 @@ public class Survey extends BaseEntity {
     private Member member;
 
     @Builder.Default
-    @OneToMany(cascade = {PERSIST, REMOVE}, orphanRemoval = true)
+    @OneToMany(fetch = LAZY, cascade = {PERSIST, REMOVE}, orphanRemoval = true)
     @JoinColumn(name = "survey_id", nullable = false, updatable = false)
     private List<Question> questions = new ArrayList<>();
 

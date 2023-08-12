@@ -4,6 +4,7 @@ import com.vestie.vestie.survey.domain.Survey;
 import com.vestie.vestie.survey.domain.SurveyRepository;
 import jakarta.annotation.Nonnull;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -14,4 +15,8 @@ public interface JpaSurveyRepository extends SurveyRepository, JpaRepository<Sur
     default Survey getById(Long id) {
         return SurveyRepository.super.getById(id);
     }
+
+    @Override
+    List<Survey> findAll();
+
 }

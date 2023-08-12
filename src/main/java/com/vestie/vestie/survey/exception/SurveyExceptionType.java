@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 public enum SurveyExceptionType implements BaseExceptionType {
 
     NOT_FOUND_SURVEY(200, HttpStatus.NOT_FOUND, "설문이 존재하지 않습니다."),
+    NOT_FOUND_SURVEY_QUESTION_TYPE(201, HttpStatus.NOT_FOUND, "질문 타입이 올바르지 않습니다."),
     ;
 
     private final int errorCode;
