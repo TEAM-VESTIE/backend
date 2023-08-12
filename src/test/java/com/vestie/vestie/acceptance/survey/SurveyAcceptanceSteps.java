@@ -71,7 +71,7 @@ public class SurveyAcceptanceSteps {
     public static ExtractableResponse<Response> 전체_설문_조회_요청() {
         return given()
                 .when()
-                .get("/surveys/query")
+                .get("/surveys")
                 .then().log().all()
                 .extract();
     }

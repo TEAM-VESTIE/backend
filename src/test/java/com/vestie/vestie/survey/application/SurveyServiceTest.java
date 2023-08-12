@@ -167,7 +167,7 @@ class SurveyServiceTest {
         @Test
         void 설문_하나가_조회된다() {
             // when
-            SurveyResponse getSurvey = surveyService.getSurvey(survey.id());
+            SurveyResponse getSurvey = surveyQueryService.getSurvey(survey.id());
 
             // then
             assertThat(getSurvey)

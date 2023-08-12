@@ -21,7 +21,7 @@ public class SurveyQueryController {
 
     private final SurveyQueryService surveyQueryService;
 
-    @GetMapping("/query")
+    @GetMapping()
     ResponseEntity<List<SurveyInquiryResponse>> getAllSurvey() {
         List<SurveyInquiryResponse> allSurvey = surveyQueryService.getAllSurvey();
         return ResponseEntity.ok(allSurvey);
@@ -30,7 +30,6 @@ public class SurveyQueryController {
     @GetMapping("/{surveyId}")
     ResponseEntity<SurveyResponse> getSurvey(@Auth Long memberId, @PathVariable Long surveyId) {
         SurveyResponse survey = surveyQueryService.getSurvey(surveyId);
-        System.out.println(survey.survey().get(0).title());
         return ResponseEntity.ok(survey);
     }
 }
